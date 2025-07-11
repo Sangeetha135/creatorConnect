@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "express-async-handler": "^1.2.0",
+    "formik": "^2.4.6",
+    "yup": "^1.6.1"
+  }
+}
