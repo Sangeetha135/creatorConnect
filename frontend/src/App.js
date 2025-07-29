@@ -35,6 +35,9 @@ import CompletedCampaigns from "./pages/CompletedCampaigns";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import CampaignDetail from "./pages/CampaignDetail";
+import AdminDashboard from "./pages/AdminDashboard";
+import ProtectedAdminRoute from "./routes/ProtectedAdminRoute";
+import Unauthorized from "./pages/Unauthorized";
 
 const theme = createTheme();
 
@@ -91,6 +94,18 @@ function AppContent() {
                   </PrivateRoute>
                 }
               />
+
+              {/* Admin Routes */}
+              <Route
+                path="/admin/dashboard"
+                element={
+                  <ProtectedAdminRoute>
+                    <AdminDashboard />
+                  </ProtectedAdminRoute>
+                }
+              />
+              <Route path="/unauthorized" element={<Unauthorized />} />
+
               <Route path="/campaigns" element={<Campaigns />} />
               <Route path="/campaigns/create" element={<CreateCampaign />} />
               <Route
@@ -170,6 +185,9 @@ function DashboardRouter() {
   }
   if (user?.role === "brand") {
     return <Navigate to="/brand/dashboard" replace />;
+  }
+  if (user?.role === "admin") {
+    return <Navigate to="/admin/dashboard" replace />;
   }
 
   return <Navigate to="/login" replace />;

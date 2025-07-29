@@ -133,6 +133,11 @@ const AuthNavbar = () => {
           <Button color="inherit" component={Link} to="/">
             Home
           </Button>
+          {user?.role === "admin" && (
+            <Button color="inherit" component={Link} to="/admin/dashboard">
+              Admin Dashboard
+            </Button>
+          )}
           {user?.role === "brand" && (
             <>
               <Button color="inherit" component={Link} to="/campaigns/create">

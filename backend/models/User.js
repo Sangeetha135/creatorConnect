@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["brand", "influencer"],
+      enum: ["brand", "influencer", "admin"],
       required: true,
     },
     isVerified: {
@@ -153,6 +153,27 @@ const userSchema = new mongoose.Schema(
     totalReviews: {
       type: Number,
       default: 0,
+    },
+    // Admin-related fields
+    suspendedAt: {
+      type: Date,
+    },
+    suspensionReason: {
+      type: String,
+    },
+    bannedAt: {
+      type: Date,
+    },
+    banReason: {
+      type: String,
+    },
+    botVerificationStatus: {
+      type: String,
+      enum: ["pending", "verified", "flagged"],
+      default: "pending",
+    },
+    flagReason: {
+      type: String,
     },
   },
   {
